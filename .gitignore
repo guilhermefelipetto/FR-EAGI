@@ -1,0 +1,7 @@
+.venv/
+datasets/
+AG/models/
+AG/imagem.jpg
+I/cadastros/*
+I/__pycache__/
+!I/cadastros/.gitkeep
