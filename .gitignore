@@ -2,6 +2,9 @@
 datasets/
 AG/models/
 AG/imagem.jpg
+AG/cnn_training/__pycache__/
+AG/cnn_training.py
+AG/mlflow/mlruns/
 I/cadastros/*
 I/__pycache__/
 !I/cadastros/.gitkeep
