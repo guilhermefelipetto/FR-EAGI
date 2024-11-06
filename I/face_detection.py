@@ -4,7 +4,7 @@ import cv2
 import face_recognition
 import numpy as np
 
-cadastros_dir = "/media/gui/EA0CFB590CFB1F6F/repositories/FR-EAGI/I/cadastros"
+cadastros_dir = r"I\cadastros"
 
 rostos_conhecidos = []
 nomes_conhecidos = []
@@ -19,7 +19,7 @@ for arquivo in os.listdir(cadastros_dir):
         nomes_conhecidos.append(nome)
 
 
-def reconhecer_faces(frame):
+def recognize_faces(frame):
     localizacoes_rostos = face_recognition.face_locations(frame, model="hog")
     codificacoes_rostos = face_recognition.face_encodings(frame, localizacoes_rostos)
 

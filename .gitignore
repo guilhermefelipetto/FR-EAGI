@@ -1,6 +1,7 @@
 .venv/
+.venv-win/
 datasets/
-AG/models/
+AG/test_models/
 AG/imagem.jpg
 AG/cnn_training/__pycache__/
 AG/cnn_training.py
@@ -8,3 +9,7 @@ AG/mlflow/mlruns/
 I/cadastros/*
 I/__pycache__/
 !I/cadastros/.gitkeep
+E/models/
+E/teste.py
+E/__pycache__/
+E/test_models/
