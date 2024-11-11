@@ -20,6 +20,16 @@ for arquivo in os.listdir(cadastros_dir):
 
 
 def recognize_faces(frame):
+    """
+    Recognizes faces in a given frame.
+    Parameters:
+    frame (numpy.ndarray): The image frame in which to detect and recognize faces.
+    Returns:
+        list: A list of tuples, each containing the name of the detected person and the coordinates 
+          of the face in the format (name, (left, top, right, bottom)). If the face is not recognized, 
+          the name will be "Unknown".
+    """
+    
     localizacoes_rostos = face_recognition.face_locations(frame, model="hog")
     codificacoes_rostos = face_recognition.face_encodings(frame, localizacoes_rostos)
 

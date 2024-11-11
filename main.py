@@ -1,12 +1,40 @@
+"""
+This script captures video from the webcam, detects faces, predicts age and gender, and recognizes emotions.
+
+Modules:
+    cv2: OpenCV library for video capture and image processing.
+    numpy: Library for numerical operations on arrays.
+    keras.api.models: Module to load pre-trained Keras models.
+    dotenv: Module to load environment variables from a .env file.
+    os: Module to interact with the operating system.
+    
+Functions:
+    preprocess_image(face): Preprocesses the input face image for model prediction.
+    
+Main Execution:
+    - Loads environment variables.
+    - Loads the age and gender prediction model.
+    - Captures video from the webcam.
+    - Detects faces in the video frames.
+    - For each detected face:
+        - Preprocesses the face image.
+        - Predicts age and gender using the pre-trained model.
+        - Recognizes emotions using the EmotionDetector.
+        - Draws rectangles around detected faces.
+        - Annotates the video frame with the predicted age, gender, and emotions.
+    - Displays the annotated video frames in a window.
+    - Exits the video capture loop when the 'q' key is pressed.
+"""
+
+from os import getenv
+
 import cv2
 import numpy as np
+from dotenv import load_dotenv
 from keras.api.models import load_model
 
 from E.emotion_model import EmotionDetector
 from I.face_detection import recognize_faces
-
-from dotenv import load_dotenv
-from os import getenv
 
 if __name__ == "__main__":
     load_dotenv()
@@ -16,6 +44,16 @@ if __name__ == "__main__":
     model = load_model(model_path, compile=False)
 
     def preprocess_image(face):
+        """
+        Preprocesses the input face image for model prediction.
+        This function resizes the input face image to 128x128 pixels, normalizes the pixel values to the range [0, 1],
+        and expands the dimensions to add a batch dimension.
+        Parameters:
+        face (numpy.ndarray): The input face image.
+        Returns:
+            numpy.ndarray: The preprocessed face image ready for model prediction.
+        """
+        
         face = cv2.resize(face, (128, 128))
         face = face / 255.0
         face = np.expand_dims(face, axis=0)

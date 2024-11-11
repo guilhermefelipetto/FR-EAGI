@@ -1,3 +1,36 @@
+"""
+This script performs the following tasks:
+1. Starts an MLflow server and UI as subprocesses.
+2. Loads the UTKFace dataset using the UTKFaceDataLoader class.
+3. Splits the dataset into training and testing sets.
+4. Initializes and compiles a UTKFaceModel.
+5. Trains the model on the training data.
+6. Evaluates the model on the testing data.
+7. Saves the trained model to a file.
+8. Terminates the MLflow server and UI subprocesses.
+
+Modules:
+    subprocess: To create and manage additional processes.
+    time: To introduce delays in the script.
+
+Classes:
+    UTKFaceDataLoader: A class to load and preprocess the UTKFace dataset.
+    UTKFaceModel: A class to define, compile, train, evaluate, and save a Keras model.
+
+Variables:
+    server_process (subprocess.Popen): Process running the MLflow server.
+    mlflow_process (subprocess.Popen): Process running the MLflow UI.
+    dataset_path (str): Path to the UTKFace dataset.
+    data_loader (UTKFaceDataLoader): Instance of UTKFaceDataLoader for loading data.
+    X_train (numpy.ndarray): Training data features.
+    X_test (numpy.ndarray): Testing data features.
+    y_train_age (numpy.ndarray): Training data labels for age.
+    y_test_age (numpy.ndarray): Testing data labels for age.
+    y_train_gender (numpy.ndarray): Training data labels for gender.
+    y_test_gender (numpy.ndarray): Testing data labels for gender.
+    model (UTKFaceModel): Instance of UTKFaceModel for the neural network.
+"""
+
 import subprocess
 import time
 
