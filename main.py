@@ -5,9 +5,14 @@ from keras.api.models import load_model
 from E.emotion_model import EmotionDetector
 from I.face_detection import recognize_faces
 
+from dotenv import load_dotenv
+from os import getenv
+
 if __name__ == "__main__":
+    load_dotenv()
+    
     # Age predict and gender recognition model
-    model_path = r'E:\repositories\FR-EAGI\AG\test_models\modelo_utkface_keras_binarycrossentropy_sigmoid_s128_dropout0.5_epc50.h5'
+    model_path = getenv('AGE_GENDER_MODEL_PATH')
     model = load_model(model_path, compile=False)
 
     def preprocess_image(face):
@@ -22,7 +27,7 @@ if __name__ == "__main__":
     video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
     
     # Emotions Model
-    detector = EmotionDetector(r'C:\Users\gfeli\OneDrive\Área de Trabalho\repo\FR-EAGI\E\modelo_emocoes_resnet50.h5')
+    detector = EmotionDetector(getenv('EMOTIONS_MODEL_PATH'))
 
     while True:
         ret, frame = video_capture.read()
@@ -55,7 +60,7 @@ if __name__ == "__main__":
             
             # Draw labels to the emotions
             cv2.putText(frame, f"Emocao predominante: {predominant_emotion}", (left, top - 45), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-            cv2.putText(frame, f"Emocao secundaria: {secondary_emotion}", (left, top - 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+            #cv2.putText(frame, f"Emocao secundaria: {secondary_emotion}", (left, top - 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
         cv2.imshow("Video", frame)
 

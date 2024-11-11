@@ -8,8 +8,10 @@ class EmotionDetector:
         self.emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
     def detect_emotion(self, frame):
-        img_array = cv2.resize(frame, (224, 224))
+        img_array = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        img_array = cv2.resize(img_array, (48, 48))
         img_array = np.expand_dims(img_array, axis=0)
+        img_array = np.expand_dims(img_array, axis=-1)
         img_array = img_array.astype('float32') / 255.0
 
         def values(lista):
